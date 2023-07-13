@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<solver xmlns="https://timefold.ai/xsd/solver" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="https://timefold.ai/xsd/solver https://timefold.ai/xsd/solver/solver.xsd">
+    <!-- Define the model -->
+    <solutionClass>testschedules.Schedule</solutionClass>
+    <entityClass>testschedules.Lecture</entityClass>
+
+    <!-- Define the score function -->
+    <scoreDirectorFactory>
+        <constraintProviderClass>testschedules.SchedulingConstraintProvider</constraintProviderClass>
+        <constraintStreamImplType>BAVET</constraintStreamImplType>
+    </scoreDirectorFactory>
+
+    <constructionHeuristic>
+        <pooledEntityPlacer>
+            <changeMoveSelector>
+                <entitySelector>
+                    <cacheType>STEP</cacheType>
+                    <selectionOrder>SORTED</selectionOrder>
+                    <sorterClass>testschedules.LectureDifficultySorter</sorterClass>
+                </entitySelector>
+            </changeMoveSelector>
+        </pooledEntityPlacer>
+    </constructionHeuristic>
+</solver>

@@ -1,0 +1,31 @@
+plugins {
+    id 'java'
+    id "application"
+}
+
+group 'test-schedules'
+version '1.0-SNAPSHOT'
+
+sourceCompatibility = 17
+targetCompatibility = 17
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+
+    implementation 'ai.timefold.solver:timefold-solver-core-impl:1.0.0'
+    implementation 'ai.timefold.solver:timefold-solver-constraint-streams:1.0.0'
+
+    // Logging
+    runtimeOnly 'ch.qos.logback:logback-classic:1.4.8'
+}
+
+ext {
+   javaMainClass = "testschedules.Main"
+}
+
+application {
+    mainClassName = javaMainClass
+}
